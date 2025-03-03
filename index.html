@@ -1,79 +1,126 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+        body {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    <title>Form Login</title>
-  </head>
-  <body>
+        .container {
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            background: white;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card-subtitle {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .btn-login {
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: 0.3s;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .btn-login:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
     <div class="container">
-        <div class="card login-form">             
-            <div class="card-body">
-              <h2 class="card-title">Login</h2>
-              <h6 class="card-subtitle text-muted mb-5 fw-bold">Please login to use this site!</h6>
-              <form>
-                <div class="mb-4">
-                  <label for="exampleInputEmail1" class="form-label">Username*</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your Email">
+        <div class="card">
+            <h2 class="card-title">Login</h2>
+            <h6 class="card-subtitle text-muted">Silakan login untuk melanjutkan</h6>
+            <form>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password*</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Min 8 character">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Min 8 karakter">
                 </div>
 
-                <div class="d-grid mt-2">
-                    <button type="submit" class="btn btn-success btn-login">Login</button>
-                </div>
-
-              </form>
-            </div>
-          </div>
+                <button type="submit" class="btn btn-login">Login</button>
+            </form>
+        </div>
     </div>
 
     <script>
-      document.querySelector(".btn-login").addEventListener("click", function(event) {
-          event.preventDefault(); // Mencegah form reload halaman
-    
-          const email = document.getElementById("exampleInputEmail1").value;
-          const password = document.getElementById("exampleInputPassword1").value;
-    
-          if (email === "" || password === "") {
-              alert("Harap isi email dan password!");
-              return;
-          }
-    
-          // Kirim data ke Google Apps Script
-          fetch("https://script.google.com/macros/s/AKfycbxOP-0NbYIbLyyAb9nFXIOHMRw0KZKE3s_4oB9XIK8JucbjHUX3jrKMLGTBtt3SOG7HGw/exec?email=" + email + "&password=" + password)
-    .then(response => response.text())
-    .then(data => {
-        console.log("Response dari server:", data); // Debugging, cek response di Console
-        if (data.includes("Login Berhasil")) {
-          window.location.href = "https://docs.google.com/spreadsheets/d/1wmvnF7UODKzZwpueiJ1EzImaTJobcaITDBpROqMXp6A/edit?usp=sharing";
-        } else {
-            alert("Login gagal! Periksa email atau password Anda.");
-        }
-    })
-    .catch(error => console.error("Error:", error));
+        document.querySelector(".btn-login").addEventListener("click", function(event) {
+            event.preventDefault();
 
-      });
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === "" || password === "") {
+                alert("Harap isi email dan password!");
+                return;
+            }
+
+            fetch("https://script.google.com/macros/s/AKfycbxOP-0NbYIbLyyAb9nFXIOHMRw0KZKE3s_4oB9XIK8JucbjHUX3jrKMLGTBtt3SOG7HGw/exec?email=" + email + "&password=" + password)
+                .then(response => response.text())
+                .then(data => {
+                    if (data.includes("Login Berhasil")) {
+                        localStorage.setItem("userEmail", email);
+                        window.location.href = "select-sheet.html";
+                    } else {
+                        alert("Login gagal! Periksa email atau password.");
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
     </script>
-    
 
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    -->
-  </body>
+</body>
 </html>
