@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Sheet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .sheet-button {
+            display: block;
+            text-decoration: none;
+            background: #007bff;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+            text-align: center;
+            cursor: pointer;
+            pointer-events: auto;
+            border: none;
+        }
+
+        .sheet-button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Selamat Datang, <span id="user-email">User</span>!</h2>
+        <h3>Pilih Sheet yang Ingin Dibuka:</h3>
+
+        <div class="grid">
+            <button class="sheet-button" data-gid="1105448387">📄 Sheet 1</button>
+            <button class="sheet-button" data-gid="457057568">📄 Sheet 2</button>
+            <button class="sheet-button" data-gid="1125277033">📄 Sheet 3</button>
+            <button class="sheet-button" data-gid="170211312">📄 Sheet 4</button>
+            <button class="sheet-button" data-gid="492497598">📄 Sheet 5</button>
+            <button class="sheet-button" data-gid="1103376863">📄 Sheet 6</button>
+            <button class="sheet-button" data-gid="1905545007">📄 Sheet 7</button>
+            <button class="sheet-button" data-gid="1050700507">📄 Sheet 8</button>
+            <button class="sheet-button" data-gid="204544669">📄 Sheet 9</button>
+            <button class="sheet-button" data-gid="1455594186">📄 Sheet 10</button>
+            <button class="sheet-button" data-gid="213234271">📄 Sheet 11</button>
+            <button class="sheet-button" data-gid="321779432">📄 Sheet 12</button>
+        </div>
+    </div>
+
+    <script>
+        // Menampilkan email pengguna dari localStorage jika tersedia
+        const userEmail = localStorage.getItem("userEmail");
+        if (userEmail) {
+            document.getElementById("user-email").textContent = userEmail;
+        }
+
+        // Event listener untuk membuka sheet dengan benar
+        document.querySelectorAll(".sheet-button").forEach(button => {
+            button.addEventListener("click", function () {
+                const sheetId = "1wmvnF7UODKzZwpueiJ1EzImaTJobcaITDBpROqMXp6A"; // ID Spreadsheet tetap
+                const gid = this.getAttribute("data-gid"); // Ambil GID dari tombol yang diklik
+                window.open(`https://docs.google.com/spreadsheets/d/${sheetId}/edit#gid=${gid}`, "_blank");
+            });
+        });
+    </script>
+
+</body>
+</html>
