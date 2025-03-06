@@ -15,7 +15,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -29,36 +30,38 @@
 
         .card {
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             padding: 30px;
-            background: white;
+            background: rgba(255, 255, 255, 0.85); /* Transparansi agar menyatu */
             text-align: center;
         }
 
         .card-title {
             font-size: 24px;
             font-weight: 600;
-            color: #333;
+            color: #4A2C2A; /* Coklat tua */
         }
 
         .card-subtitle {
             font-size: 14px;
-            color: #555;
+            color: #5A3E36; /* Coklat soft */
             margin-bottom: 20px;
         }
 
         .form-label {
             font-weight: 500;
             font-size: 14px;
+            color: #5A3E36;
         }
 
         .form-control {
             border-radius: 8px;
             padding: 10px;
+            border: 1px solid #8B5A2B; /* Coklat kayu */
         }
 
         .btn-login {
-            background: #007bff;
+            background: #8B5A2B; /* Coklat kayu */
             color: white;
             padding: 12px;
             border-radius: 8px;
@@ -70,7 +73,7 @@
         }
 
         .btn-login:hover {
-            background: #0056b3;
+            background: #D4A017; /* Warna emas */
             transform: scale(1.05);
         }
     </style>
@@ -81,7 +84,7 @@
         <div class="card">
             <h2 class="card-title">Login</h2>
             <h6 class="card-subtitle text-muted">Silakan login untuk melanjutkan</h6>
-            <form>
+            <form id="loginForm">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="Masukkan Email">
@@ -97,20 +100,30 @@
     </div>
 
     <script>
-        document.querySelector(".btn-login").addEventListener("click", function(event) {
-            event.preventDefault();
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Hindari reload halaman
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
 
             if (email === "" || password === "") {
                 alert("Harap isi email dan password!");
                 return;
             }
 
-            fetch("https://script.google.com/macros/s/AKfycbxOP-0NbYIbLyyAb9nFXIOHMRw0KZKE3s_4oB9XIK8JucbjHUX3jrKMLGTBtt3SOG7HGw/exec?email=" + email + "&password=" + password)
-                .then(response => response.text())
+            // URL API untuk login (pastikan ini benar)
+            const apiURL = "https://script.google.com/macros/s/AKfycbxOP-0NbYIbLyyAb9nFXIOHMRw0KZKE3s_4oB9XIK8JucbjHUX3jrKMLGTBtt3SOG7HGw/exec";
+
+            fetch(`${apiURL}?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
                 .then(data => {
+                    console.log("Server response:", data); // Debugging
+
                     if (data.includes("Login Berhasil")) {
                         localStorage.setItem("userEmail", email);
                         window.location.href = "select-sheet.html";
@@ -118,7 +131,10 @@
                         alert("Login gagal! Periksa email atau password.");
                     }
                 })
-                .catch(error => console.error("Error:", error));
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Terjadi kesalahan saat login. Coba lagi nanti.");
+                });
         });
     </script>
 
