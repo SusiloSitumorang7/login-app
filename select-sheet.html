@@ -15,7 +15,8 @@
         }
 
         body {
-            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            background: url('bg.jpg') no-repeat center center fixed;
+            background-size: cover;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -24,10 +25,10 @@
         }
 
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.8);
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             max-width: 450px;
             width: 90%;
         }
@@ -35,14 +36,14 @@
         h2 {
             font-size: 22px;
             font-weight: 600;
-            color: #333;
+            color: #4A2C2A; /* Coklat tua */
             margin-bottom: 10px;
         }
 
         h3 {
             font-size: 18px;
             font-weight: 400;
-            color: #555;
+            color: #5A3E36; /* Coklat soft */
             margin-bottom: 20px;
         }
 
@@ -55,23 +56,24 @@
         .sheet-button {
             display: block;
             text-decoration: none;
-            background: #007bff;
+            background: #8B5A2B; /* Coklat kayu */
             color: white;
             padding: 12px;
             border-radius: 8px;
             font-size: 14px;
             font-weight: 500;
-            transition: 0.3s;
+            transition: 0.3s ease-in-out;
             text-align: center;
             cursor: pointer;
-            pointer-events: auto;
             border: none;
+            transform: scale(1);
         }
 
         .sheet-button:hover {
-            background: #0056b3;
-            transform: scale(1.05);
+            background: #D4A017; /* Warna emas */
+            transform: scale(1.1);
         }
+
     </style>
 </head>
 <body>
@@ -81,18 +83,18 @@
         <h3>Pilih Sheet yang Ingin Dibuka:</h3>
 
         <div class="grid">
-<!--             <button class="sheet-button" data-gid="1105448387">📄 Sheet 1</button>
-            <button class="sheet-button" data-gid="457057568">📄 Sheet 2</button>
-            <button class="sheet-button" data-gid="1125277033">📄 Sheet 3</button>
-            <button class="sheet-button" data-gid="170211312">📄 Sheet 4</button>
-            <button class="sheet-button" data-gid="492497598">📄 Sheet 5</button>
-            <button class="sheet-button" data-gid="1103376863">📄 Sheet 6</button>
-            <button class="sheet-button" data-gid="1905545007">📄 Sheet 7</button>
-            <button class="sheet-button" data-gid="1050700507">📄 Sheet 8</button>
-            <button class="sheet-button" data-gid="204544669">📄 Sheet 9</button>
-            <button class="sheet-button" data-gid="1455594186">📄 Sheet 10</button> -->
-            <button class="sheet-button" data-gid="213234271">Master PPKS</button>
-<!--             <button class="sheet-button" data-gid="321779432">📄 Sheet 12</button> -->
+            <button class="sheet-button" data-gid="213234271">Januari</button>
+            <button class="sheet-button" data-gid="949326756">Februari</button>
+            <button class="sheet-button" data-gid="1020597726">Maret</button>
+            <button class="sheet-button" data-gid="890252137">April</button>
+            <button class="sheet-button" data-gid="190532442">Mei</button>
+            <button class="sheet-button" data-gid="793488673">Juni</button>
+            <button class="sheet-button" data-gid="183618437">Juli</button>
+            <button class="sheet-button" data-gid="1349882821">Agustus</button>
+            <button class="sheet-button" data-gid="2067985809">September</button>
+            <button class="sheet-button" data-gid="744204085">Oktober</button>
+            <button class="sheet-button" data-gid="800604366">November</button>
+            <button class="sheet-button" data-gid="171213935">Desember</button>
         </div>
     </div>
 
